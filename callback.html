@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Create a 6 digit otp with combination of both alphabets and numbers
+        function generateOTP() {
+            const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let otp = "";
+        
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                otp += characters[randomIndex];
+            }
+        
+            return otp;
+        }
+    
+        console.log("Generated OTP:", generateOTP());
+        
+//Take age as input from user and calculate the days from given age
+function calculateDaysFromAge() {
+    const age = parseInt(prompt("Enter your age in years:"));
+
+    if (isNaN(age) || age <= 0) {
+        console.log("Please enter a valid age greater than 0.");
+        return;
+    }
+
+    const days = age * 365;
+    console.log(`You have lived approximately ${days} days.`);
+}
+calculateDaysFromAge();
+//.Calculate the difference between the two dates and return the difference in years, months and days.
+function getDateDifference(startDate, endDate) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (isNaN(start) || isNaN(end)) {
+        return "Invalid date format.";
+    }
+
+    let years = end.getFullYear() - start.getFullYear();
+    let months = end.getMonth() - start.getMonth();
+    let days = end.getDate() - start.getDate();
+
+    if (days < 0) {
+        months -= 1;
+        days += new Date(end.getFullYear(), end.getMonth(), 0).getDate();
+    }
+
+    if (months < 0) {
+        years -= 1;
+        months += 12;
+    }
+
+    return `${years} years, ${months} months, and ${days} days`;
+}
+
+const startDate = "2020-05-15";
+const endDate = "2025-01-18";
+
+console.log(getDateDifference(startDate, endDate));
+
+
+    </script>
+</body>
+</html>
